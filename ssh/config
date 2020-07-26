@@ -1,0 +1,15 @@
+Host gitlab.com
+ IdentityFile ~/.ssh/gitlab
+
+Host github.com
+ IdentityFile ~/.ssh/github
+
+Host *
+ IdentityFile ~/.ssh/id_rsa
+ AddKeysToAgent yes
+ IgnoreUnknown UseKeychain
+ UseKeychain yes
+ ServerAliveInterval 30
+ ServerAliveCountMax 3
+ ForwardX11 yes
+ IPQoS lowdelay throughput

@@ -1,0 +1,34 @@
+[user]
+	email = brkr19@users.noreply.github.com
+	name = brkr19
+
+[github]
+    user = brkr19
+
+[credential]
+    helper = cache --timeout=86400
+
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+
+[core]
+    editor = vim
+
+[diff]
+    compactionHeuristic = true
+    rename = copy
+    check = true
+
+[pager]
+    color = true
+
+[push]
+    default = simple
+
+[commit]
+    gpgsign = false
+
+[help]
+    autocorrect = 1
