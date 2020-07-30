@@ -2,7 +2,7 @@
 alias ll='ls -Flarth --color=auto'
 alias clean-prompt="PROMPT='%F{84}fracturelabs:%F{117}%~$%f '"
 alias public-ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias history="history 1"
+alias history="history -1 1"
 alias dirsize="du -hsx * | sort -rh"
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
