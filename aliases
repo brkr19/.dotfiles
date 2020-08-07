@@ -1,12 +1,13 @@
 # Common aliases
 alias ll='ls -Flarth --color=auto'
-alias clean-prompt="PROMPT='%F{84}fracturelabs:%F{117}%~$%f '"
-alias public-ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias history="history -1 1"
+alias public-ip="dig +short myip.opendns.com @resolver1.opendns.com || curl ifconfig.me"
+alias history="history -i 1"
 alias dirsize="du -hsx * | sort -rh"
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
 alias hexify="python -c \"from sys import argv; f=open(argv[1], 'rb').read(); print ''.join(map(lambda c:'\\\\\\x%02x'%c, map(ord, f)))\""
+alias cpuhogs="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head"
+alias memhogs="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head"
 
 # OSX
 if [[ `uname` == Darwin ]]; then
