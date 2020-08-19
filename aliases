@@ -9,6 +9,7 @@ alias hexify="python -c \"from sys import argv; f=open(argv[1], 'rb').read(); pr
 alias ssh-tunnels="sudo lsof -i -n | grep sshd"
 alias cpuhogs="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head"
 alias memhogs="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head"
+alias sort-ips="sort -t . -k 1,1n -k 2,2n -k 3,3n -k 4,4n"
 
 # OSX
 if [[ `uname` == Darwin ]]; then
