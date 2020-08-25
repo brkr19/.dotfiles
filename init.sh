@@ -9,5 +9,3 @@ ln -s -f ~/.dotfiles/ssh/config ~/.ssh/config
 
 (cd ~/.dotfiles && git submodule update --init --recursive && git submodule foreach --recursive git fetch)
 
-sudo chsh -s $(which zsh) $(whoami)
-chsh -s $(which zsh)
