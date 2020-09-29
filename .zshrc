@@ -86,7 +86,7 @@ export KEYTIMEOUT=1
 PROMPT_EOL_MARK=''
 PROMPT='%B%F{84}[%F{117}%~%F{84}] %F{117}%(!.#.$)%f%b '
 
-export NVM_DIR="/home/brkr19/.nvm"
+export NVM_DIR="~/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Show percentage during 'less' command

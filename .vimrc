@@ -21,8 +21,9 @@ filetype indent on    " Enable filetype-specific indenting
 set autoindent		" auto indentation
 set copyindent		" copy the previous indentation on autoindenting
 set expandtab        "replace <TAB> with spaces
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set shiftround
 set smarttab
 
