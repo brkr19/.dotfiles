@@ -81,10 +81,18 @@ bindkey '^[[B' history-substring-search-down
 
 export KEYTIMEOUT=1
 
-
 # Prompts
 PROMPT_EOL_MARK=''
-PROMPT='%B%F{84}[%F{117}%~%F{84}] %F{117}%(!.#.$)%f%b '
+PROMPT='%B%F{202}[%F{255}%~%F{202}] %F{117}%(!.#.$)%f%b '
+
+preexec() {
+}
+
+precmd() {
+  if [[ -n "$PRINT_CMD_DTM" ]]; then
+    echo && print -P %F{250}$(date -Iseconds)%f && echo
+  fi
+}
 
 export NVM_DIR="~/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
