@@ -1,8 +1,8 @@
 # Common aliases
-alias ll='ls -Flarth --color=auto'
+alias -g ll='ls -Flarth --color=auto'
 alias public-ip="dig +short myip.opendns.com @resolver1.opendns.com || curl ifconfig.me"
-alias history="history -i 1"
-alias dirsize="du -hsx * | sort -rh"
+alias -g history="history -i 1"
+alias -g dirsize="du -hsx * | sort -rh"
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
 alias hexify="python -c \"from sys import argv; f=open(argv[1], 'rb').read(); print ''.join(map(lambda c:'\\\\\\x%02x'%c, map(ord, f)))\""
@@ -14,5 +14,15 @@ alias sort-ips="sort -t . -k 1,1n -k 2,2n -k 3,3n -k 4,4n"
 # OSX
 if [[ `uname` == Darwin ]]; then
   alias resize-images='sips -Z 640 *'
-  alias ll='ls -Glarth'
+  alias -g ll='ls -Glarth'
 fi
+
+# Functions
+
+function cmd_timestamps() {
+  if [[ -n "$PRINT_CMD_DTM" ]]; then
+    unset PRINT_CMD_DTM;
+  else
+    PRINT_CMD_DTM=1;
+  fi
+}
