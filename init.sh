@@ -9,3 +9,9 @@ ln -s -f ~/.dotfiles/ssh/config ~/.ssh/config
 
 (cd ~/.dotfiles && git submodule update --init --recursive && git submodule foreach --recursive git fetch)
 
+ZSH=$(which zsh)
+if [[ -f $ZSH ]];then
+  chsh -s $ZSH
+else
+  echo "ZSH is not installed. You must manually install it and execute chsh"
+fi
