@@ -28,6 +28,7 @@ set shiftround
 set smarttab
 
 au FileType Makefile set noexpandtab
+au FileType make set noexpandtab
 
 " yaml
 au BufNewFile,BufRead *.yml set tabstop=2
