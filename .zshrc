@@ -102,7 +102,3 @@ export LESS='eFRX -Pslines %lt-%lb (%Pb\%) file %f'
 
 export TERM=xterm-256color
 [ -n "$TMUX" ] && export TERM=screen-256color
-
-if [ -z "$TMUX" ]; then
-    tmux attach -t default || tmux new -s default
-fi
