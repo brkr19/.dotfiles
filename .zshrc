@@ -102,3 +102,41 @@ export LESS='eFRX -Pslines %lt-%lb (%Pb\%) file %f'
 
 export TERM=xterm-256color
 [ -n "$TMUX" ] && export TERM=screen-256color
+
+if [ -z "$TMUX" ]; then
+  unset TMUX_SESSIONS
+  declare -a TMUX_SESSIONS
+
+  if ! tmux has -t default; then
+    tmux new -d -t default
+  fi
+
+  if [ -n "$PROJECTNAME" ] && ! tmux has -t $PROJECTNAME; then
+    tmux new -d -t $PROJECTNAME
+  fi
+
+  for session in $(tmux ls -F "#{session_name}"); do
+    TMUX_SESSIONS+=( $session )
+  done
+
+  tput setaf 117
+
+  echo
+  tput setaf 202
+  echo "--------------------------------------------------"
+  tput setaf 117
+  tput bold
+  echo "Active TMUX Sessions"
+  tput bold
+  for session in "${TMUX_SESSIONS[@]}"; do
+    echo " $(tput setaf 202)/$(tput setaf 117) $session"
+  done
+  tput setaf 202
+  echo "--------------------------------------------------"
+  tput setaf 117
+  echo
+
+  tput sgr0
+
+fi
+
