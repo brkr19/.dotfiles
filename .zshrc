@@ -2,6 +2,7 @@
 
 export DOTFILES=$HOME/.dotfiles
 export INCLUDES=$DOTFILES/zsh-plugins
+export TMUX_AUTO_ATTACH=1
 
 # Source Files
 source $DOTFILES/aliases
@@ -104,39 +105,63 @@ export TERM=xterm-256color
 [ -n "$TMUX" ] && export TERM=screen-256color
 
 if [ -z "$TMUX" ]; then
+  if ! tmux has -t default 2>/dev/null; then
+    tmux new -d -t default
+    DEFAULT_TMUX_SESSION=default
+  fi
+
+  if [ -n "$PROJECTNAME" ]; then
+    DEFAULT_TMUX_SESSION=$PROJECTNAME
+
+    if ! tmux has -t "$PROJECTNAME" 2>/dev/null; then
+      tmux new -d -t $PROJECTNAME
+    fi
+  fi
+
+  if [ -n "$TMUX_AUTO_ATTACH" ]; then
+    tmux a -t $DEFAULT_TMUX_SESSION
+  fi
+
+fi
+
+if [ -n "$TMUX" ]; then
+  export TERM=screen-256color
+
   unset TMUX_SESSIONS
   declare -a TMUX_SESSIONS
-
-  if ! tmux has -t default; then
-    tmux new -d -t default
-  fi
-
-  if [ -n "$PROJECTNAME" ] && ! tmux has -t $PROJECTNAME; then
-    tmux new -d -t $PROJECTNAME
-  fi
 
   for session in $(tmux ls -F "#{session_name}"); do
     TMUX_SESSIONS+=( $session )
   done
+  unset session
 
-  tput setaf 117
+  if [ $(tmux list-windows | wc -l) -eq "1" ] && [ $(tmux list-panes | wc -l) -eq "1" ]; then
+    tput setaf 117
 
-  echo
-  tput setaf 202
-  echo "--------------------------------------------------"
-  tput setaf 117
-  tput bold
-  echo "Active TMUX Sessions"
-  tput bold
-  for session in "${TMUX_SESSIONS[@]}"; do
-    echo " $(tput setaf 202)/$(tput setaf 117) $session"
-  done
-  tput setaf 202
-  echo "--------------------------------------------------"
-  tput setaf 117
-  echo
+    echo
+    tput setaf 202
+    echo "--------------------------------------------------"
+    tput setaf 117
+    tput bold
+    echo "Active TMUX Sessions"
+    tput bold
+    for session in "${TMUX_SESSIONS[@]}"; do
+      echo " $(tput setaf 202)/$(tput setaf 117) $session"
+    done
+    unset session
+    echo
 
-  tput sgr0
+    if [ -n "$TMUX_AUTO_ATTACH" ]; then
+      echo "Disable auto-TMUX by adding to ~/.zshrc_local:"
+      echo "  unset TMUX_AUTO_ATTACH" 
+    fi
 
+    tput setaf 202
+    echo "--------------------------------------------------"
+    tput setaf 117
+    echo
+
+    tput sgr0
+  fi
 fi
 
