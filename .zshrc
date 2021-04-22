@@ -105,9 +105,9 @@ export TERM=xterm-256color
 [ -n "$TMUX" ] && export TERM=screen-256color
 
 if [ -z "$TMUX" ]; then
+  DEFAULT_TMUX_SESSION=default
   if ! tmux has -t default 2>/dev/null; then
     tmux new -d -t default
-    DEFAULT_TMUX_SESSION=default
   fi
 
   if [ -n "$PROJECTNAME" ]; then
