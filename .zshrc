@@ -105,11 +105,14 @@ export TERM=xterm-256color
 [ -n "$TMUX" ] && export TERM=screen-256color
 
 if [ -z "$TMUX" ]; then
-  if ! tmux has -t default 2>/dev/null; then
-    tmux new -d -t default
-    DEFAULT_TMUX_SESSION=default
+  DEFAULT_TMUX_SESSION=default
+
+  # Create a new default session if one doesn't exist
+  if ! tmux has -t $DEFAULT_TMUX_SESSION 2>/dev/null; then
+    tmux new -d -t $DEFAULT_TMUX_SESSION
   fi
 
+  # Create a new project session if one doesn't exist
   if [ -n "$PROJECTNAME" ]; then
     DEFAULT_TMUX_SESSION=$PROJECTNAME
 
@@ -118,10 +121,10 @@ if [ -z "$TMUX" ]; then
     fi
   fi
 
+  # Connect to a session automatically
   if [ -n "$TMUX_AUTO_ATTACH" ]; then
     tmux a -t $DEFAULT_TMUX_SESSION
   fi
-
 fi
 
 if [ -n "$TMUX" ]; then
