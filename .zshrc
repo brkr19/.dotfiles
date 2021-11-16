@@ -91,11 +91,23 @@ preexec() {
 
 precmd() {
   NEWLINE=$'\n'
-  if [[ $(expr length $PWD) -le 40 ]]; then
-    PROMPT='%B%F{202}[%F{254}%~%F{202}] %F{117}%(!.#.$)%f%b '
-  else
-    PROMPT='%B%F{202}┌──[%F{254}%~%F{202}] ${NEWLINE}└─ %F{117}%(!.#.$)%f%b '
+  ONELINE='%B%F{202}[%F{254}%~%F{202}] %F{117}%(!.#.$)%f%b '
+  TWOLINE='%B%F{202}┌──[%F{254}%~%F{202}] ${NEWLINE}└─ %F{117}%(!.#.$)%f%b '
+
+  if [[ -n "$PROMPT_LINE_OVERRIDE" ]]; then
+    if [[ "$PROMPT_LINE_OVERRIDE" -eq 1 ]]; then
+      PROMPT="$ONELINE"
+    elif [[ "PROMPT_LINE_OVERRIDE" -eq 2 ]]; then
+      PROMPT="$TWOLINE"
+    fi
+  else 
+    if [[ $(expr length $PWD) -le 40 ]]; then
+      PROMPT="$ONELINE"
+    else
+      PROMPT="$TWOLINE"
+    fi
   fi
+
 
   if [[ -n "$PRINT_CMD_DTM" ]]; then
     echo && print -P %F{250}$(date -Iseconds)%f && echo

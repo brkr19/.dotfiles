@@ -27,3 +27,11 @@ function cmd_timestamps() {
     PRINT_CMD_DTM=1;
   fi
 }
+
+function prompt_lines() {
+  if [[ -n $1 ]]; then
+    PROMPT_LINE_OVERRIDE=$1
+  else
+    unset PROMPT_LINE_OVERRIDE
+  fi
+}
