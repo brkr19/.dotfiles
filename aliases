@@ -12,12 +12,6 @@ alias memhogs="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head"
 alias sort-ips="sort -t . -k 1,1n -k 2,2n -k 3,3n -k 4,4n"
 alias getTS='date "+%Y%m%d%H%M%S"'
 
-# OSX
-if [[ `uname` == Darwin ]]; then
-  alias resize-images='sips -Z 640 *'
-  alias -g ll='ls -Glarth'
-fi
-
 # Functions
 
 function cmd_timestamps() {
@@ -35,3 +29,12 @@ function prompt_lines() {
     unset PROMPT_LINE_OVERRIDE
   fi
 }
+
+function ip_lookup() {
+  if [[ -n $1 ]]; then
+    curl -sH "User-Agent: keycdn-tools:https://www.example.com" "https://tools.keycdn.com/geo.json?host=$1" | jq
+  else
+    echo "Must include an IP or host to lookup"
+  fi
+}
+
