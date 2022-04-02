@@ -48,7 +48,7 @@ zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower
 
 # Set Paths
 PATH=$PATH:~/.local/bin:/usr/sbin:~/go/bin
-GOPATH=~/.go
+GOPATH=~/go
 
 
 # ZSH settings
