@@ -32,7 +32,7 @@ function prompt_lines() {
 
 function ip_lookup() {
   if [[ -n $1 ]]; then
-    curl -s "https://ip-api.com/json/$1" | jq
+    curl -s "http://ip-api.com/json/$1" | jq
   else
     echo "Must include an IP or host to lookup"
   fi
