@@ -32,7 +32,7 @@ function prompt_lines() {
 
 function ip_lookup() {
   if [[ -n $1 ]]; then
-    curl -sH "User-Agent: keycdn-tools:https://www.example.com" "https://tools.keycdn.com/geo.json?host=$1" | jq
+    curl -s "https://ip-api.com/json/$1" | jq
   else
     echo "Must include an IP or host to lookup"
   fi
