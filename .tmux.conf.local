@@ -316,6 +316,9 @@ tmux_conf_theme_status_right_fg='#000000,#000000,#000000,#ffffff'	# black, black
 tmux_conf_theme_status_right_bg='#cacaca,#999999'	# progressively darker greys
 tmux_conf_theme_status_right_attr='bold,bold'
 
+# Pane title
+set -g pane-border-status top
+
 # Keep C-a for screen
 set -gu prefix2
 unbind C-a

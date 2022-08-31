@@ -38,3 +38,12 @@ function ip_lookup() {
   fi
 }
 
+function rename_pane () {
+  if [[ -n $1 ]]; then
+    pane_name=$1
+  else
+    read "pane_name?Enter Pane Name: ";
+  fi
+  printf "\033]2;%s\033\\r:r" "${pane_name}";
+}
+
