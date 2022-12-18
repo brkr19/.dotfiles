@@ -1,11 +1,5 @@
-Host gitlab.com
- IdentityFile ~/.ssh/gitlab
-
-Host github.com
- IdentityFile ~/.ssh/github
-
 Host *
- IdentityFile ~/.ssh/id_rsa
+ IdentityFile ~/.ssh/id_ecdsa
  AddKeysToAgent yes
  IgnoreUnknown UseKeychain
  UseKeychain yes
