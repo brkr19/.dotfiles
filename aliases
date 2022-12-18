@@ -44,6 +44,6 @@ function rename_pane () {
   else
     read "pane_name?Enter Pane Name: ";
   fi
-  printf "\033]2;%s\033\\r:r" "${pane_name}";
+  printf "\033]2;%s\033\\" "${pane_name}";
 }
 
