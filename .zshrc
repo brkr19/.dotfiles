@@ -102,11 +102,7 @@ precmd() {
       PROMPT="$TWOLINE"
     fi
   else 
-    if [[ $(expr length $PWD) -le 40 ]]; then
-      PROMPT="$ONELINE"
-    else
-      PROMPT="$TWOLINE"
-    fi
+    PROMPT="$TWOLINE"
   fi
 
 
