@@ -7,3 +7,4 @@ Host *
  ServerAliveCountMax 3
  ForwardX11 yes
  IPQoS lowdelay throughput
+ ForwardAgent yes
