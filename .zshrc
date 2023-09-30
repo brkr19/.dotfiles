@@ -3,6 +3,8 @@
 export DOTFILES=$HOME/.dotfiles
 export INCLUDES=$DOTFILES/zsh-plugins
 export TMUX_AUTO_ATTACH=1
+export PIPX_HOME=/tools/pipx
+export PIPX_BIN_DIR=/tools/pipx/bin
 
 # Source Files
 source $DOTFILES/aliases
@@ -47,7 +49,7 @@ zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower
 
 
 # Set Paths
-PATH=$PATH:~/.local/bin:/usr/sbin:~/go/bin
+PATH=$PATH:~/.local/bin:/usr/sbin:~/go/bin:$PIPX_BIN_DIR
 GOPATH=~/go
 
 
