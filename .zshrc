@@ -111,7 +111,7 @@ precmd() {
   fi
 }
 
-export NVM_DIR="~/.nvm"
+export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Show percentage during 'less' command
@@ -184,3 +184,4 @@ if [ -n "$TMUX" ]; then
   fi
 fi
 
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
