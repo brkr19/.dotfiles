@@ -1,4 +1,5 @@
 syntax on
+set encoding=utf8
 
 filetype on           " Enable filetype detection
 

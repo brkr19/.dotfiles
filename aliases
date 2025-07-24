@@ -2,7 +2,7 @@
 alias -g ll='ls -Flarth --color=auto'
 alias public-ip="dig +short myip.opendns.com @resolver1.opendns.com || curl ifconfig.me"
 alias -g history="history -i 1"
-alias -g dirsize="du -hsx * | sort -rh"
+alias -g dirsize="du -hsx --exclude='/proc/*' --exclude='/run/*' --exclude='/sys/*' --exclude='/dev/*' * | sort -rh"
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
 alias hexify="python -c \"from sys import argv; f=open(argv[1], 'rb').read(); print ''.join(map(lambda c:'\\\\\\x%02x'%c, map(ord, f)))\""
