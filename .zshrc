@@ -85,6 +85,10 @@ bindkey '^[[B' history-substring-search-down
 
 export KEYTIMEOUT=1
 
+# Fix bracketed paste mode in vi mode - prevent last character case toggle
+# when pasting commands without trailing newline
+unset zle_bracketed_paste
+
 # Prompts
 PROMPT_EOL_MARK=''
 PROMPT='%B%F{202}[%F{255}%~%F{202}] %F{117}%(!.#.$)%f%b '
