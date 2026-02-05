@@ -1,0 +1,17 @@
+# Local configuration files (not tracked in git)
+.gitconfig.local
+.zshrc_local
+
+# SSH keys and certificates
+ssh/config.d/*
+*.pem
+*.key
+*_rsa
+*_ed25519
+*_ecdsa
+*.pub
+
+# Sensitive data
+authorized_keys
+known_hosts
+known_hosts.old
