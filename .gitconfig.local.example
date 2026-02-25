@@ -1,0 +1,9 @@
+# Copy this file to ~/.gitconfig.local and customize with your information
+# This file is NOT tracked in git to keep personal information private
+
+[user]
+	email = your.email@example.com
+	name = Your Name
+
+[github]
+    user = yourusername

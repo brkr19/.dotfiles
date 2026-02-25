@@ -85,6 +85,10 @@ bindkey '^[[B' history-substring-search-down
 
 export KEYTIMEOUT=1
 
+# Fix bracketed paste mode in vi mode - prevent last character case toggle
+# when pasting commands without trailing newline
+unset zle_bracketed_paste
+
 # Prompts
 PROMPT_EOL_MARK=''
 PROMPT='%B%F{202}[%F{255}%~%F{202}] %F{117}%(!.#.$)%f%b '
@@ -113,7 +117,7 @@ precmd() {
   fi
 }
 
-export NVM_DIR="~/.nvm"
+export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Show percentage during 'less' command
@@ -186,3 +190,4 @@ if [ -n "$TMUX" ]; then
   fi
 fi
 
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

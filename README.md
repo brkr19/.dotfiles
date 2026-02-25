@@ -1,5 +1,5 @@
 # Setup
 ```bash
-git clone git@github.com:brkr19/.dotfiles.git ~/.dotfiles
+git clone https://github.com/brkr19/.dotfiles.git ~/.dotfiles
 ~/.dotfiles/init.sh
 ```
