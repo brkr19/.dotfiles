@@ -36,8 +36,6 @@ done
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
-HISTCONTROL=ignoreboth
-setopt HIST_IGNORE_SPACE
 
 # Highlight Settings
 zle_highlight+=(paste:none)
@@ -46,6 +44,7 @@ zle_highlight+=(paste:none)
 zstyle ':completion:*' menu select
 zstyle ':completion:*' completer _complete
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 
 # Set Paths
@@ -96,18 +95,14 @@ bindkey -M vicmd 'j' history-substring-search-down
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-export KEYTIMEOUT=1
-
-# Fix bracketed paste mode in vi mode - prevent last character case toggle
-# when pasting commands without trailing newline
-unset zle_bracketed_paste
+# Wait up to 100ms for the rest of a key sequence. At 10ms (KEYTIMEOUT=1),
+# the bracketed paste end sequence (\e[201~) can arrive split over SSH: the \e
+# switches to vi command mode and the ~ toggles the case of the last character.
+export KEYTIMEOUT=10
 
 # Prompts
 PROMPT_EOL_MARK=''
 PROMPT='%B%F{202}[%F{255}%~%F{202}] %F{117}%(!.#.$)%f%b '
-
-preexec() {
-}
 
 precmd() {
   NEWLINE=$'\n'
@@ -117,7 +112,7 @@ precmd() {
   if [[ -n "$PROMPT_LINE_OVERRIDE" ]]; then
     if [[ "$PROMPT_LINE_OVERRIDE" -eq 1 ]]; then
       PROMPT="$ONELINE"
-    elif [[ "PROMPT_LINE_OVERRIDE" -eq 2 ]]; then
+    elif [[ "$PROMPT_LINE_OVERRIDE" -eq 2 ]]; then
       PROMPT="$TWOLINE"
     fi
   else 
