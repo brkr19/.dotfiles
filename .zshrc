@@ -54,7 +54,20 @@ GOPATH=~/go
 
 
 # ZSH settings
-autoload -U compinit && compinit
+# Docker CLI completions (Docker Desktop on macOS)
+[[ -d $HOME/.docker/completions ]] && fpath=($HOME/.docker/completions $fpath)
+
+# Run compinit once. Do the full check and rebuild only when the dump is over
+# 24 hours old; otherwise load the cached dump.
+autoload -Uz compinit
+ZCOMPDUMP=${ZDOTDIR:-$HOME}/.zcompdump
+_stale_dump=( $ZCOMPDUMP(N.mh+24) )
+if (( $#_stale_dump )); then
+  compinit -d $ZCOMPDUMP && touch $ZCOMPDUMP
+else
+  compinit -C -d $ZCOMPDUMP
+fi
+unset _stale_dump
 zmodload -i zsh/complist
 
 unsetopt menu_complete
@@ -117,8 +130,15 @@ precmd() {
   fi
 }
 
+# Load nvm without resolving the default version (nvm_auto takes ~700ms), then
+# put the newest installed Node on PATH. "nvm use" still works as normal.
 export NVM_DIR=~/.nvm
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+if [[ -s "$NVM_DIR/nvm.sh" ]]; then
+  . "$NVM_DIR/nvm.sh" --no-use
+  _nvm_nodes=( $NVM_DIR/versions/node/v*(N/nOn) )
+  (( $#_nvm_nodes )) && PATH=$_nvm_nodes[1]/bin:$PATH
+  unset _nvm_nodes
+fi
 
 # Show percentage during 'less' command
 export LESS='eFRX -Pslines %lt-%lb (%Pb\%) file %f'
