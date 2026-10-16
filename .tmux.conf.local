@@ -304,7 +304,7 @@ tmux_conf_theme_left_separator_sub='\uE0B1'   #   you only need fonts patched wi
 tmux_conf_theme_right_separator_main='\uE0B2' #   Powerline symbols or the standalone
 tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see README.md
 tmux_conf_theme_status_left=' #{hostname} | #{username}#{root} | #S '
-tmux_conf_theme_status_right=' %F | #(date +"%R %Z/%-:::z" ) '
+tmux_conf_theme_status_right=' %F | %R %Z/%z '
 
 # status left style
 tmux_conf_theme_status_left_fg='#000000,#000000,#000000'  		# black, black, black
